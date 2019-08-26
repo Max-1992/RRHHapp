@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-areas: "img registro"
+}
+
+.wrapper-img {
+    --Wrapper-img-Height: 100vh;
+    grid-area: img;
+    background-image: url("../../../assets/img/rrhh.jpg");
+    height: var(--Wrapper-img-Height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message {
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+    height: 10rem;
+    width: 25rem;
+    text-align: center;
+    font-size: 3rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.404)
+}
+
+.wrapper-login {
+    font-family: 'Open Sans', sans-serif;
+    grid-area: registro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    --Login-container-Width: 70%;
+    --Login-container-Height: 80%;
+    font-family: 'Open Sans', sans-serif;
+    width: var(--Login-container-Width);
+    height: var(--Login-container-Height);
+}
+
+.register-title {
+    text-align: center;
+    margin: 1rem 0 3rem;
+}
+
+.username-wrapper {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.username-wrapper:hover .fa-user {
+    color: rgb(122, 77, 248);
+}
+
+.password-wrapper {
+    text-align: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.password-wrapper:hover .fa-lock {
+    color: rgb(122, 77, 248);
+}
+
+.fas {
+    font-size: 1.5rem;
+    position: absolute;
+    z-index: 1;
+    top: 6px;
+    left: 3rem;
+    transition: 0.5s;
+}
+
+.input {
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    width: 80%;
+    padding-left: 2.5rem;
+    border: none;
+    border-bottom: 2px solid rgb(120, 191, 250);
+    padding-bottom: 4px;
+    transition: 1s;
+}
+
+.input:hover {
+    border-bottom: 2px solid rgb(122, 77, 248);
+}
+
+.input:focus {
+    border-bottom: 2px solid rgb(122, 77, 248);
+}
+
+.fas:hover {
+    color: rgb(122, 77, 248);
+}
+
+.checkbox-wrapper {
+    margin-left: 3rem;
+    margin-bottom: 2.5rem;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.register-button {
+    outline: none;
+    width: 12rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 2rem;
+    text-align: left;
+    padding-left: 1.5rem;
+    background-color: rgb(96, 180, 248);
+    color: white;
+    transition: .5s;
+}
+
+.register-button:hover {
+    background-color: rgb(122, 77, 248);
+}
+
+.fa-chevron-right {
+    position: relative;
+    top: 0.7rem;
+    left: -2rem;
+    font-size: 1.2rem;
+    color: white
+}
+
+.link {
+    text-align: center;
+    transition: 0.5s;
+}
+
+.link span a {
+    text-decoration: none;
+}
+
+.link span a:hover {
+    color: rgb(165, 77, 248);
+}
+
+@media screen and (max-width: 1024px) {
+    .fas {
+        left: 2rem;
+    }
+    .fa-chevron-right {
+        left: -2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .checkbox-wrapper {
+        margin-left: 2rem;
+    }
+}
