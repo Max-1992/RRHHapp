@@ -2,6 +2,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
+
+//Angular Material
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialConfigModule } from './material-config.module'
 
 //Componentes Personalizados
 import { HomeComponent } from './pages/home/home.component';
@@ -10,9 +17,15 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { EmpleadoComponent } from './pages/empleado/empleado.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
+import { EditarComponent } from './pages/editar/editar.component';
 
 //Rutas
 import { AppRoutingModule } from './app-routing.module'
+
+//Pipes
+import { CapitalizadoPipe } from './pipes/capitalizado.pipe'
+
+
 
 @NgModule({
   declarations: [
@@ -22,11 +35,18 @@ import { AppRoutingModule } from './app-routing.module'
     FooterComponent,
     EmpleadoComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    EditarComponent,
+    CapitalizadoPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialConfigModule
   ],
   providers: [],
   bootstrap: [AppComponent]

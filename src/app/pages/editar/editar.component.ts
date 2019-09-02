@@ -13,11 +13,11 @@ import Swal from 'sweetalert2';
 
 
 @Component({
-  selector: 'app-empleado',
-  templateUrl: './empleado.component.html',
-  styleUrls: ['./empleado.component.css']
+  selector: 'app-editar',
+  templateUrl: './editar.component.html',
+  styleUrls: ['./editar.component.css']
 })
-export class EmpleadoComponent implements OnInit {
+export class EditarComponent implements OnInit {
 
   empleado:EmpleadoModel
 
@@ -26,6 +26,7 @@ export class EmpleadoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getEmpleado()
   }
 
 
@@ -40,38 +41,49 @@ export class EmpleadoComponent implements OnInit {
       return;
     }
 
-   this.newEmpleado( forma )
+    this.updateEmpleado()
+    
 
   }
 
-  newEmpleado( forma: NgForm ){
-    
+  updateEmpleado(){
     Swal.fire({
       allowOutsideClick: false,
-      title: 'Creando Registro',
+      title: 'Actualizando Registro',
       type: 'info',
-      text: 'El registro esta siendo procesado...'
+      text: 'El registro esta siendo actualizado...'
     })
     Swal.showLoading();
-
-    this.empleadosServices.newEmpleado( this.empleado )
-                          .subscribe( resp => {
+    this.empleadosServices.editEmpleado(this.empleado)
+                          .subscribe( (resp:EmpleadoModel) => {
                             Swal.close()
+                            this.empleado = resp;
+
                             Swal.fire({
-                              title: '¡Empleado Registrado!',
-                              html: `¡<b>${this.empleado.nombre}</b>, ya es parte del equipo!`,
+                              title: '¡Empleado Actualizado!',
+                              html: `Los datos de <b>${this.empleado.nombre}</b>, han sido actualizados`,
                               type: 'success'
                             })
-                            forma.reset();
                             
+                            this.getEmpleado()
                           }, (err) => {
                             Swal.fire({
                               type: 'error',
-                              title: 'Error!',
-                              text: 'Ha ocurrido un error al realizar el registro por favor intentelo nuevamente',
+                              title: '¡Error al actualizar datos!',
+                              text: 'Ha ocurrido un error al actualizar los datos, por favor intentelo nuevamente',
                             })
                           })
-                          
+  }
+
+  private getEmpleado(){
+    const id = this.router.snapshot.paramMap.get('id');
+
+    this.empleadosServices.getEmpleado(id)
+                          .subscribe( (resp:EmpleadoModel) => {
+                                this.empleado = resp;
+                                this.empleado.id = id;
+                            })
+
   }
 
   //Validations

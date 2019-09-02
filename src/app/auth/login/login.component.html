@@ -10,28 +10,42 @@
             <h1 class="register-title animated bounceInDown">
                 Login
             </h1>
-            <form class="from animated bounceInRight">
+            <form [formGroup]="forma" (ngSubmit)="access()" class="from animated bounceInRight">
                 <div class="username-wrapper">
                     <i class="fas fa-user"></i>
-                    <input class="input" type="email" placeholder="email">
+                    <input class="input" type="email" placeholder="email" formControlName="email">
+
+                    <!-- Validación de Acceso -->
+                    <div class="err" *ngIf="email.dirty && email.errors?.required">
+                        <p class="err-message">
+                            Este campo es necesario para iniciar sesión.
+                        </p>
+                    </div>
                 </div>
                 <div class="password-wrapper">
                     <i class="fas fa-lock"></i>
-                    <input class="input" type="password" placeholder="password">
+                    <input class="input" type="password" placeholder="password" formControlName="password">
+
+                    <!-- Validación de Acceso -->
+                    <div class="err" *ngIf="password.dirty && password.errors?.required">
+                        <p class="err-message ">
+                            Este campo es necesario para iniciar sesión.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="custom-control custom-checkbox checkbox-wrapper">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="rememberUser">
                     <label class="custom-control-label" for="customCheck1">Recordar Usuario</label>
                 </div>
 
-                <div class="button-wrapper">
-                    <button class="register-button">
+                <div class="button-wrapper ">
+                    <button class="register-button ">
                         Login
                     </button>
-                    <i class="fas fa-chevron-right"></i>
+                    <i class="fas fa-chevron-right "></i>
                 </div>
-                <div class="link">
+                <div class="link ">
                     <p>¿No tienes cuenta? <span><a routerLink="/registro">Registrate</a></span> aquí.</p>
                 </div>
             </form>

@@ -1,1 +1,76 @@
-<p>home works!</p>
+<app-navbar></app-navbar>
+
+
+<div class="wrapper animated fadeIn">
+
+    <h1 class="title">Lista de Empleados <i class="fas fa-users"></i></h1>
+
+    <div *ngIf="!loading && empleados.length !== 0" class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Puesto</th>
+                    <th scope="col">Salario</th>
+                    <th scope="col">Fecha de Ingreso</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let empleado of empleados; let i = index" class="t-body">
+                <tr>
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{empleado.nombre | capitalizado: true }}</td>
+                    <td>{{empleado.apellido | capitalizado: true }}</td>
+                    <td>{{empleado.area | capitalizado: true }}</td>
+                    <td>{{empleado.puesto | capitalizado: true }}</td>
+                    <td>{{empleado.salario | currency: 'ARS'}}</td>
+                    <td>{{empleado.ingreso | date: 'd/MM/yyyy'}}</td>
+                    <td>
+                        <button [routerLink]="['/editar', empleado.id]" class="btn btn-primary mr-2 text-center edit">
+                            <i class="fas fa-user-edit"></i>
+                        </button>
+                        <button (click)="deleteEmpleado( empleado, i )" class="btn btn-danger text-center delete">
+                                <i class="fas fa-user-times"></i>
+                        </button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <button [routerLink]="['/empleado','nuevo']" class="add-user animated heartBeat">
+                <i class="fas fa-user-plus"></i>
+        </button>
+    </div>
+
+    <div class="container">
+        <div *ngIf="loading" class="alert alert-info text-center mt-3">
+            <h2 class="alert-heading h4 mb-4">Cargando</h2>
+            <p>
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+            </p>
+            <p>
+                Espere por favor...
+            </p>
+        </div>
+
+        <div *ngIf="!cargando && empleados.length === 0" class="alert alert-warning text-center mt-3">
+            <h2 class="alert-heading h4 mb-4">No se encontraron registros</h2>
+            <p>
+                <i class="fas fa-user-slash fa-2x"></i>
+            </p>
+            <p>
+                Comienza a cargar tus registro haciendo click en nuevo registro <i class="fas fa-user-plus"></i>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+
+<app-footer class="footer-container"></app-footer>

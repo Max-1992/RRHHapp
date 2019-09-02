@@ -1,1 +1,15 @@
-<p>navbar works!</p>
+<nav class="nav">
+
+    <div class="nav-wrapper-link">
+        <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/empleado','nuevo']">Ingresar</a>
+        <a class="nav-link logaut" (click)="logaut()" routerLinkActive="active" routerLink="/login">Cerrar Sesión</a>
+    </div>
+
+    <div class="nav-wrapper-logo">
+        <figure class="logo-wrapper">
+            <img class="logo" src="assets/img/ch.png" alt="">
+        </figure>
+    </div>
+
+</nav>
